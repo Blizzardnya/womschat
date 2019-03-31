@@ -19,4 +19,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/chat/', include('chat_room.urls')),
+
+    path('auth/', include([
+        path('', include('djoser.urls')),
+        path('', include('djoser.urls.authtoken')),
+        path('', include('djoser.urls.jwt')),
+    ])),
 ]

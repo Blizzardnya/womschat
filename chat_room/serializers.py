@@ -19,3 +19,21 @@ class RoomSerializers(serializers.ModelSerializer):
     class Meta:
         model = Room
         fields = ("creator", "invited", "date")
+
+
+class ChatSerializers(serializers.ModelSerializer):
+    """Сериализация чата"""
+    user = UserSerializer()
+
+    class Meta:
+        model = Chat
+        fields = ("user", "text", "date")
+
+
+class ChatPostSerializers(serializers.ModelSerializer):
+    """Сериализация чата"""
+    # room = RoomSerializers()
+
+    class Meta:
+        model = Chat
+        fields = ("room", "text")
