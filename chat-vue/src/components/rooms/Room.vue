@@ -1,16 +1,19 @@
 <template>
     <div>
-        <ul>
-            <li v-for="room in rooms">
-                <h3>{{room.creator.username}}</h3>
-                {{room.date}}
-            </li>
-        </ul>
+        <div>
+            <ul>
+                <li v-for="room in rooms">
+                    <h3 @click="openDialog(room.id)">{{room.creator.username}}</h3>
+                    {{room.date}}
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
     import $ from 'jquery';
+
     export default {
         name: "Room",
         data(){
@@ -33,6 +36,9 @@
                         this.rooms = response.data.data
                     }
                 })
+            },
+            openDialog(id){
+                this.$emit("openDialog", id)
             }
         }
     }
