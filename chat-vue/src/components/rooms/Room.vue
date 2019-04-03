@@ -1,19 +1,16 @@
 <template>
-    <div>
-        <div>
-            <ul>
-                <li v-for="room in rooms">
-                    <h3 @click="openDialog(room.id)">{{room.creator.username}}</h3>
-                    {{room.date}}
-                </li>
-            </ul>
-        </div>
-    </div>
+    <mu-col span="4" xl="2">
+        <mu-paper :z-depth="2">
+            <div v-for="room in rooms">
+                <h3 @click="openDialog(room.id)">{{room.creator.username}}</h3>
+                <small>{{room.date}}</small>
+                <mu-divider></mu-divider>
+            </div>
+        </mu-paper>
+    </mu-col>
 </template>
 
 <script>
-    import $ from 'jquery';
-
     export default {
         name: "Room",
         data(){
@@ -45,5 +42,10 @@
 </script>
 
 <style scoped>
-
+    h3 {
+        cursor: pointer;
+    }
+    .rooms-list{
+        box-shadow: 1px 2px 3px aliceblue;
+    }
 </style>

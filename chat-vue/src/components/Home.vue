@@ -1,12 +1,16 @@
 <template>
-    <div>
-        <h1>Чат на vue.js</h1>
-        <button v-if="!auth" @click="gologin">Вход</button>
-        <button v-else @click="logout">Выход</button>
-
-        <Room v-if="auth" @openDialog="openDialog"></Room>
-        <Dialog v-if="dialog.show" :id="dialog.id"></Dialog>
-    </div>
+    <mu-container>
+        <mu-appbar style="width: 100%;" color="primary">
+            Чат на vue.js
+            <!--<mu-button flat slot="right">LOGIN</mu-button>-->
+            <mu-button flat slot="right" color="success" v-if="!auth" @click="gologin">Вход</mu-button>
+            <mu-button flat slot="right" color="error" v-else @click="logout">Выход</mu-button>
+        </mu-appbar>
+        <mu-row>
+            <Room v-if="auth" @openDialog="openDialog"></Room>
+            <Dialog v-if="dialog.show" :id="dialog.id"></Dialog>
+        </mu-row>
+    </mu-container>
 </template>
 
 <script>
@@ -16,8 +20,8 @@
     export default {
         name: "Home",
         components: {Dialog, Room},
-        data(){
-            return{
+        data() {
+            return {
                 dialog: {
                     id: '',
                     show: false
@@ -25,21 +29,21 @@
             }
         },
         computed: {
-            auth(){
-                if (sessionStorage.getItem("auth_token")){
+            auth() {
+                if (sessionStorage.getItem("auth_token")) {
                     return true
                 }
             }
         },
         methods: {
-            gologin(){
+            gologin() {
                 this.$router.push({name: "login"})
             },
-            logout(){
+            logout() {
                 sessionStorage.removeItem("auth_token")
                 window.location = '/'
             },
-            openDialog(id){
+            openDialog(id) {
                 this.dialog.id = id
                 this.dialog.show = true
             }
