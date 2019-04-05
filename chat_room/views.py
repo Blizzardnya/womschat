@@ -19,6 +19,10 @@ class RoomAPIView(APIView):
         serializer = RoomSerializers(rooms, many=True)
         return Response({"data": serializer.data})
 
+    def post(self, request):
+        Room.objects.create(creator=request.user)
+        return Response(status=201)
+
 
 class DialogAPIView(APIView):
     """Диалог чата"""

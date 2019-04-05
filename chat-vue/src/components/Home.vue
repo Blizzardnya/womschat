@@ -6,20 +6,21 @@
             <mu-button flat slot="right" color="success" v-if="!auth" @click="gologin">Вход</mu-button>
             <mu-button flat slot="right" color="error" v-else @click="logout">Выход</mu-button>
         </mu-appbar>
-        <mu-row>
-            <Room v-if="auth" @openDialog="openDialog"></Room>
-            <Dialog v-if="dialog.show" :id="dialog.id"></Dialog>
-        </mu-row>
+        <!--<mu-row>-->
+            <!--<Room v-if="auth" @openDialog="openDialog"></Room>-->
+            <!--<Dialog v-if="dialog.show" :id="dialog.id"></Dialog>-->
+        <!--</mu-row>-->
+        <slot></slot>
     </mu-container>
 </template>
 
 <script>
-    import Room from "./rooms/Room";
-    import Dialog from "./rooms/Dialog";
+    // import Room from "./rooms/Room";
+    // import Dialog from "./rooms/Dialog";
 
     export default {
         name: "Home",
-        components: {Dialog, Room},
+        // components: {Dialog, Room},
         data() {
             return {
                 dialog: {
@@ -43,10 +44,10 @@
                 sessionStorage.removeItem("auth_token")
                 window.location = '/'
             },
-            openDialog(id) {
-                this.dialog.id = id
-                this.dialog.show = true
-            }
+            // openDialog(id) {
+            //     this.dialog.id = id
+            //     this.dialog.show = true
+            // }
         }
     }
 </script>
