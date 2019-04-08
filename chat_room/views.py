@@ -45,6 +45,8 @@ class DialogAPIView(APIView):
 
 
 class AddUsersRoom(APIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+
     def get(self, request):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)

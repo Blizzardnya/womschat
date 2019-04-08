@@ -50,14 +50,17 @@
                 }
             }
         },
+        mounted(){
+            this.loadDialog()
+        },
         created() {
             $.ajaxSetup({
                 headers: {"Authorization": "token " + sessionStorage.getItem("auth_token")}
             });
+            this.loadDialog()
             setInterval(() => {
                 this.loadDialog()
             }, 5000)
-            this.loadDialog()
         },
         methods: {
             loadDialog() {

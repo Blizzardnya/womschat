@@ -10,7 +10,10 @@
             <!--<Room v-if="auth" @openDialog="openDialog"></Room>-->
             <!--<Dialog v-if="dialog.show" :id="dialog.id"></Dialog>-->
         <!--</mu-row>-->
-        <slot></slot>
+        <slot v-if="auth"></slot>
+        <mu-row justify-content="center" full-width v-else>
+            <h2>Пройдите авторизацию</h2>
+        </mu-row>
     </mu-container>
 </template>
 

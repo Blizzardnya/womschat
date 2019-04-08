@@ -21,17 +21,19 @@
 
     export default {
         name: "Room",
-        components: { HomeSlot },
+        components: {HomeSlot},
         data() {
             return {
                 rooms: '',
             }
         },
         created() {
-            $.ajaxSetup({
-                headers: {"Authorization": "token " + sessionStorage.getItem("auth_token")}
-            });
-            this.loadRoom()
+            if (sessionStorage.getItem("auth_token")) {
+                $.ajaxSetup({
+                    headers: {"Authorization": "token " + sessionStorage.getItem("auth_token")}
+                });
+                this.loadRoom()
+            }
         },
         methods: {
             loadRoom() {

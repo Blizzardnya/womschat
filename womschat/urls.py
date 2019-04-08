@@ -27,6 +27,7 @@ urlpatterns = [
         path('', include('djoser.urls.authtoken')),
         path('', include('djoser.urls.jwt')),
     ])),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+              # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += [re_path(r'^.*', include('start.urls'))]
+# urlpatterns += [re_path(r'^.*', include('start.urls'))]
