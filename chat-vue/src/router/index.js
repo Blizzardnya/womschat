@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Room from "../components/rooms/Room";
 import Dialog from "../components/rooms/Dialog";
+import AddUser from "../components/rooms/AddUsers"
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
             path: '/dialog/:id',
             name: 'dialog',
             component: Dialog
+        },
+        {
+            path: '/users/:id',
+            name: 'addUser',
+            component: AddUser
         }
     ]
 })

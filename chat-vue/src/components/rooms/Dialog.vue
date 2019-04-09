@@ -1,7 +1,8 @@
 <template>
     <RoomSlot>
         <mu-col span="8" xl="10" style="margin-top: 2%;">
-            <AddUsers :room="id"></AddUsers>
+            <slot></slot>
+            <!--<AddUsers :room="id"></AddUsers>-->
             <mu-container class="dialog">
                 <mu-row v-for="dialog in dialogs"
                         direction="column"
@@ -36,11 +37,14 @@
 
 <script>
     import RoomSlot from './Room'
-    import AddUsers from './AddUsers'
+    // import AddUsers from './AddUsers'
 
     export default {
         name: "Dialog",
-        components: {AddUsers, RoomSlot},
+        components: {
+            // AddUsers,
+            RoomSlot
+        },
         props: {id: ''},
         data() {
             return {
@@ -58,9 +62,9 @@
                 headers: {"Authorization": "token " + sessionStorage.getItem("auth_token")}
             });
             this.loadDialog()
-            setInterval(() => {
-                this.loadDialog()
-            }, 5000)
+            // setInterval(() => {
+            //     this.loadDialog()
+            // }, 5000)
         },
         methods: {
             loadDialog() {
@@ -72,6 +76,7 @@
                     },
                     success: (response) => {
                         this.dialogs = response.data.data
+                        this.$router.push({name: 'addUser', params: {id: this.$route.params.id}})
                     }
                 })
             },

@@ -39,7 +39,7 @@
                         password: this.formVal.password
                     },
                     success: (response) => {
-                        alert("Спасибо что вы с нами")
+                        // alert("Спасибо что вы с нами")
                         sessionStorage.setItem("auth_token", response.data.attributes.auth_token)
                         this.$router.push({name: "room"})
                     },

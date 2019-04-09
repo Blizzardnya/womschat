@@ -1,4 +1,5 @@
 from django.db.models import Q
+from rest_framework.generics import get_object_or_404
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -48,7 +49,10 @@ class AddUsersRoom(APIView):
     permission_classes = [permissions.IsAuthenticated, ]
 
     def get(self, request):
-        users = User.objects.all()
+        room = get_object_or_404(Room, pk=request.GET.get("id"))
+        invited = room.invited.values_list('pk', flat=True)
+        users = User.objects.exclude(pk__in=list(invited))
+        # users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response({"users": serializer.data})
 
